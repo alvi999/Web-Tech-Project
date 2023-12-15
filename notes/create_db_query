@@ -1,0 +1,169 @@
+CREATE TABLE landing_page (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    description TEXT,
+    hero_image_link VARCHAR(255)
+);
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    username VARCHAR(255) UNIQUE,
+    email VARCHAR(255) UNIQUE,
+    gender ENUM('Male', 'Female', 'Other'),
+    dob DATE,
+    password VARCHAR(255),
+    user_type VARCHAR(255),
+    pfp VARCHAR(255)
+);
+
+CREATE TABLE forgot_pass_table (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255),
+    code VARCHAR(255) UNIQUE
+);
+
+CREATE TABLE jobs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    category VARCHAR(255),
+    sub_category VARCHAR(255),
+    job_position VARCHAR(255),
+    required_skills TEXT,
+    required_education VARCHAR(255),
+    required_experience INT,
+    job_type VARCHAR(255),
+    job_location VARCHAR(255),
+    job_description TEXT,
+    job_responsibilities TEXT,
+    tags TEXT,
+    application_deadline DATE,
+    job_poster INT,
+    post_time DATETIME
+);
+
+CREATE TABLE shortlisted_jobs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    job_id INT
+);
+
+CREATE TABLE applications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    applicant_id INT,
+    first_name VARCHAR(255),
+    last_name VARCHAR(255),
+    education VARCHAR(255),
+    skills TEXT,
+    experience TEXT,
+    availability VARCHAR(255),
+    email VARCHAR(255),
+    phone_number VARCHAR(15),
+    address VARCHAR(255),
+    cv_link VARCHAR(255),
+    job_id INT,
+    shortlisted_application BOOLEAN
+);
+
+
+CREATE TABLE shortlisted_applications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    application_id INT,
+    recruiter_id INT
+);
+
+CREATE TABLE reported_jobs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    job_id INT,
+    reported_by INT
+);
+
+CREATE TABLE reported_applicant (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    applicant_id INT,
+    reported_by INT
+);
+
+CREATE TABLE rules (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    R1 TEXT,
+    R2 TEXT,
+    R3 TEXT,
+    R4 TEXT,
+    R5 TEXT,
+    R6 TEXT
+);
+
+CREATE TABLE faq (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    question TEXT,
+    answer TEXT
+);
+
+CREATE TABLE about (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    about TEXT
+);
+
+CREATE TABLE terms_of_services (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    T1 TEXT,
+    T2 TEXT,
+    T3 TEXT,
+    T4 TEXT,
+    T5 TEXT,
+    T6 TEXT
+);
+
+CREATE TABLE events (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    description TEXT,
+    location VARCHAR(255),
+    date DATE,
+    start_time TIME,
+    end_time TIME
+);
+
+CREATE TABLE interested (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    user_id INT,
+    email VARCHAR(255),
+    event_id INT
+);
+
+-- Create the contact_info table
+CREATE TABLE contact_info (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(20) NOT NULL,
+    link VARCHAR(255) NOT NULL
+);
+
+-- Insert values into the contact_info table
+INSERT INTO contact_info (email, phone_number, link) VALUES
+('example@email.com', '+1234567890', 'https://example.com');
+
+CREATE TABLE policy_table (
+    id INT PRIMARY KEY,
+    policy TEXT
+);
+
+INSERT INTO policy_table (id, policy) VALUES (1, 'Default Policy Text');
+
+CREATE TABLE chat (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sender VARCHAR(255) NOT NULL,
+    receiver VARCHAR(255) NOT NULL,
+    text TEXT NOT NULL,
+    time DATETIME NOT NULL
+);
+
+CREATE TABLE notification (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    user_type VARCHAR(50) NOT NULL,
+    notification_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
